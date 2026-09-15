@@ -1,0 +1,39 @@
+BRAIN TUMOR MRI DATASET EXPLORATION
+======================================
+
+Dataset directory: C:\Users\snehi\Documents\Codex\2026-09-07\you-are-helping-me-build-a\brain-tumor-mri-classification\dataset
+Readable images: 7200
+Unreadable/corrupt images: 0
+
+Images per class
+  glioma: training=1400, testing=400, total=1800
+  meningioma: training=1400, testing=400, total=1800
+  notumor: training=1400, testing=400, total=1800
+  pituitary: training=1400, testing=400, total=1800
+
+Image formats: {'JPEG': 7196, 'PNG': 4}
+Unique dimensions: 447
+Most common dimensions: (512, 512): 5014, (225, 225): 338, (630, 630): 90, (201, 251): 57, (228, 221): 51, (232, 217): 50, (442, 442): 48, (236, 236): 48, (150, 198): 44, (200, 252): 43
+Pixel mean (RGB, 0-255; 64x64 sample per image): 47.57, 47.57, 47.58
+Pixel std (RGB, 0-255; 64x64 sample per image): 49.08, 49.08, 49.09
+
+Exact duplicate groups (same file bytes): 153
+Exact duplicate groups crossing train/test: 0
+Potential near-duplicate pairs (dHash distance <= 4): 16085
+Potential near-duplicate pairs crossing train/test: 5425
+
+Notes
+- Near-duplicate results are a screening signal; visually inspect matches before deciding they are leakage.
+- Patient-level leakage cannot be ruled out because this dataset does not provide patient IDs.
+
+Train/test near-duplicate examples:
+  dHash=4: Training\notumor\Tr-no_786.jpg | Testing\glioma\Te-gl_106.jpg
+  dHash=4: Training\meningioma\Tr-me_277.jpg | Testing\meningioma\Te-me_245.jpg
+  dHash=3: Training\notumor\Tr-no_648.jpg | Testing\notumor\Te-no_26.jpg
+  dHash=3: Training\notumor\Tr-no_488.jpg | Testing\notumor\Te-no_35.jpg
+  dHash=0: Training\notumor\Tr-no_1396.jpg | Testing\notumor\Te-no_176.jpg
+  dHash=3: Training\meningioma\Tr-me_362.jpg | Testing\meningioma\Te-aug-me_26.jpg
+  dHash=2: Training\notumor\Tr-no_1195.jpg | Testing\notumor\Te-no_114.jpg
+  dHash=4: Training\notumor\Tr-no_1212.jpg | Testing\notumor\Te-no_246.jpg
+  dHash=3: Training\notumor\Tr-no_109.jpg | Testing\notumor\Te-no_144.jpg
+  dHash=3: Training\notumor\Tr-no_847.jpg | Testing\notumor\Te-no_95.jpg

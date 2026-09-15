@@ -1,0 +1,55 @@
+==================================================
+BRAIN TUMOR MRI CLASSIFICATION - BASELINE CNN EVALUATION
+==================================================
+Model Checkpoint       : baseline_cnn.keras
+Test Directory         : dataset\Testing
+Total Test Images      : 1600
+Image Dimensions       : 224x224 RGB
+Classes (4)       : glioma, meningioma, notumor, pituitary
+
+--------------------------------------------------
+OVERALL PERFORMANCE METRICS
+--------------------------------------------------
+Test Loss              : 1.1840
+Test Accuracy          : 68.75% (0.6875)
+Precision (Macro)      : 0.7130
+Precision (Weighted)   : 0.7130
+Recall (Macro)         : 0.6875
+Recall (Weighted)      : 0.6875
+F1-Score (Macro)       : 0.6624
+F1-Score (Weighted)    : 0.6624
+ROC-AUC (Macro OvR)   : 0.8828
+ROC-AUC (Weighted OvR): 0.8828
+
+--------------------------------------------------
+PER-CLASS CLASSIFICATION REPORT
+--------------------------------------------------
+              precision    recall  f1-score   support
+
+      glioma     0.8824    0.4125    0.5622       400
+  meningioma     0.6179    0.4325    0.5088       400
+     notumor     0.6358    0.9775    0.7704       400
+   pituitary     0.7162    0.9275    0.8083       400
+
+    accuracy                         0.6875      1600
+   macro avg     0.7130    0.6875    0.6624      1600
+weighted avg     0.7130    0.6875    0.6624      1600
+
+
+--------------------------------------------------
+CONFUSION MATRIX
+--------------------------------------------------
+Columns = Predicted, Rows = Actual
+Classes: ['glioma', 'meningioma', 'notumor', 'pituitary']
+
+[[165 100  80  55]
+ [ 18 173 124  85]
+ [  0   2 391   7]
+ [  4   5  20 371]]
+
+Per-class breakdown:
+  - glioma      :  165/ 400 correct ( 41.25% recall)
+  - meningioma  :  173/ 400 correct ( 43.25% recall)
+  - notumor     :  391/ 400 correct ( 97.75% recall)
+  - pituitary   :  371/ 400 correct ( 92.75% recall)
+==================================================

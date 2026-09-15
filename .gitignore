@@ -1,0 +1,39 @@
+# Dataset (large MRI scans ~160MB; download instructions in README)
+dataset/
+dataset.zip
+*.zip
+*.tar
+*.gz
+
+# Python cache & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Secrets & environment variables
+.env
+.env.*
+*.env
+*.pem
+*.key
+
+# Logs & temporary outputs
+*.log
+*.err
+tmp/
+temp/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
