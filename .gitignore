@@ -20,9 +20,24 @@ ENV/
 # Secrets & environment variables
 .env
 .env.*
-*.env
+!.env.example
 *.pem
 *.key
+
+# Streamlit local configuration secrets
+.streamlit/secrets.toml
+
+# Test & linting caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# Backup & scratch files
+*.bak
+*.tmp
 
 # Logs & temporary outputs
 *.log
@@ -37,3 +52,26 @@ temp/
 *~
 .DS_Store
 Thumbs.db
+
+# TensorFlow/Keras model checkpoints and weights
+*.keras
+*.h5
+*.hdf5
+*.weights.h5
+
+# Dataset archives and large packaged files
+README.zip
+*.zip
+*.tar
+*.gz
+
+# Local backups and archived experiments
+app_backup_*.py
+backup_pre_audit/
+cleanup_archive/
+
+# Nested duplicate project copy
+brain-tumor-mri-classification/
+
+# Local runtime and generated cache files
+.streamlit/secrets.toml

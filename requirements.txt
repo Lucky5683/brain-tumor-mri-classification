@@ -1,6 +1,31 @@
-tensorflow
-numpy
-Pillow
-scikit-learn
-matplotlib
-streamlit
+# Brain Tumor MRI Classification Using EfficientNet-B0 with Grad-CAM
+# Python Dependencies (Tested & Verified on Python 3.13)
+
+# Core Deep Learning & Machine Learning
+tensorflow>=2.16.0
+keras>=3.14.0
+scikit-learn>=1.4.0
+
+# Scientific Computing & Data Processing
+numpy>=1.26.0
+pandas>=2.2.0
+scipy>=1.12.0
+
+# Image Processing & Computer Vision
+pillow>=10.2.0
+opencv-python>=4.9.0
+
+# Data Visualization & Plotting
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# Interactive Web Application
+streamlit>=1.35.0
+
+# Document & Presentation Generation
+python-docx>=1.1.0
+python-pptx>=1.0.0
+
+# Automated Testing & Browser Validation
+pytest>=8.0.0
+selenium>=4.20.0
