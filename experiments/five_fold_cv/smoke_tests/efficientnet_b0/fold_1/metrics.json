@@ -1,0 +1,19 @@
+{
+  "model": "efficientnet_b0",
+  "fold": 1,
+  "smoke_test": true,
+  "epochs_requested": 2,
+  "epochs_completed": 2,
+  "validation_loss": 0.3704146146774292,
+  "accuracy": 0.849303126335144,
+  "macro_precision": 0.8665048743026571,
+  "macro_recall": 0.8479755148659742,
+  "macro_f1": 0.8499765074751751,
+  "class_names": [
+    "glioma",
+    "meningioma",
+    "notumor",
+    "pituitary"
+  ],
+  "note": "Smoke test only; not a full CV result or official test result."
+}

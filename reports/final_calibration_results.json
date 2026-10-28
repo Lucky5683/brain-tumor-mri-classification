@@ -1,0 +1,14 @@
+{
+  "optimal_temperature": 1.1322,
+  "uncalibrated": {
+    "ece": 0.0288,
+    "mce": 0.1061,
+    "brier_score": 0.1961
+  },
+  "calibrated": {
+    "ece": 0.0244,
+    "mce": 0.1239,
+    "brier_score": 0.1964
+  },
+  "ece_reduction_percent": 15.28
+}

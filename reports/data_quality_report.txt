@@ -1,0 +1,45 @@
+============================================================
+BRAIN TUMOR MRI CLASSIFICATION V2 - DATASET AUDIT REPORT
+============================================================
+
+Dataset Path: X:\Mini Project\brain-tumor-mri-classification\dataset
+Total Scanned Images: 7200
+Corrupted / Unreadable: 0
+
+1. SPLIT & CLASS COUNTS:
+  [Training] Total: 5600
+    - glioma      : 1400
+    - meningioma  : 1400
+    - notumor     : 1400
+    - pituitary   : 1400
+  [Testing] Total: 1600
+    - glioma      :  400
+    - meningioma  :  400
+    - notumor     :  400
+    - pituitary   :  400
+
+2. RESOLUTION & FORMATS:
+  Unique image sizes: 447
+    512x512: 5014 images
+    225x225: 338 images
+    630x630: 90 images
+    201x251: 57 images
+    228x221: 51 images
+  Formats: {'JPEG': 7196, 'PNG': 4}
+
+3. DUPLICATE AUDIT:
+  Exact Duplicate Groups (SHA-256): 153
+  Exact Duplicates Crossing Train/Test: 0
+  Near-Duplicate Pairs (dHash <= 4): 77229
+  Near-Duplicate Pairs Crossing Train/Test: 26589
+  Contact Sheets Generated: 20
+
+4. QUALITY & INTENSITY ANOMALIES:
+  Extremely Dark (mean < 10.0): 0
+  Extremely Bright (mean > 180.0): 0
+  Unusual Aspect / Tiny: 0
+
+5. PATIENT IDENTIFIER STATUS:
+  CONFIRMED: Dataset filenames (e.g. Tr-gl_0010.jpg, Te-me_0005.jpg) do NOT contain patient IDs or acquisition session metadata. Per-patient clinical leakage cannot be proved or disproved.
+
+============================================================

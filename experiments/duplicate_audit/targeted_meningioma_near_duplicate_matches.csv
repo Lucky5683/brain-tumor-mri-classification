@@ -1,0 +1,7 @@
+file_a,file_b,class,split_a,split_b,relationship,phash_distance
+dataset\Training\meningioma\Tr-me_1215.jpg,dataset\Training\meningioma\Tr-me_475.jpg,meningioma,Training,Training,same_split,4
+dataset\Training\meningioma\Tr-me_1278.jpg,dataset\Training\meningioma\Tr-me_309.jpg,meningioma,Training,Training,same_split,4
+dataset\Training\meningioma\Tr-me_307.jpg,dataset\Training\meningioma\Tr-me_612.jpg,meningioma,Training,Training,same_split,2
+dataset\Training\meningioma\Tr-me_309.jpg,dataset\Training\meningioma\Tr-me_748.jpg,meningioma,Training,Training,same_split,4
+dataset\Training\meningioma\Tr-me_475.jpg,dataset\Training\meningioma\Tr-me_493.jpg,meningioma,Training,Training,same_split,4
+dataset\Training\meningioma\Tr-me_658.jpg,dataset\Training\meningioma\Tr-me_886.jpg,meningioma,Training,Training,same_split,4

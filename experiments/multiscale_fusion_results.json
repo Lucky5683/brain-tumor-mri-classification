@@ -1,0 +1,22 @@
+{
+  "experiment": "EfficientNet-B0 Multi-Scale Fusion",
+  "class_names": [
+    "glioma",
+    "meningioma",
+    "notumor",
+    "pituitary"
+  ],
+  "training_images": 4480,
+  "validation_images": 1120,
+  "stage1_seconds": 1100.2,
+  "stage2_seconds": 934.0,
+  "selected_checkpoint": "X:\\Mini Project\\brain-tumor-mri-classification\\models\\multiscale_fusion_best.keras",
+  "best_validation_metrics": {
+    "epoch": 3,
+    "val_accuracy": 0.8598214285714286,
+    "val_macro_f1": 0.8553249635485844,
+    "val_macro_precision": 0.8620493327009554,
+    "val_macro_recall": 0.8598214285714286
+  },
+  "test_set_evaluated": false
+}

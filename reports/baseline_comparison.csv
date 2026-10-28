@@ -1,0 +1,5 @@
+Model,Parameters,Size (MB),Accuracy,Macro-F1,Macro-Precision,Macro-Recall,Glioma Recall,Meningioma Recall,NoTumor Recall,Pituitary Recall,Latency (ms/img),Split Note
+Custom 4-Block CNN,421828,4.88,0.8734,0.8691,0.8753,0.8707,0.8028,0.7133,0.9929,0.9739,36.57,Trained on random 80/20 split; evaluated on grouped val
+EfficientNet-B0 (Two-Stage),4214055,28.39,0.8777,0.8728,0.8863,0.8744,0.8732,0.6487,0.9788,0.9967,90.35,Trained on random 80/20 split; evaluated on grouped val
+Multi-Scale Fusion (Standard Split),4427687,31.7,0.889,0.8848,0.8912,0.8861,0.8662,0.7025,0.9788,0.9967,99.04,Trained on random 80/20 split; evaluated on grouped val
+Multi-Scale Fusion (Grouped Split),4427687,31.7,0.8638,0.8582,0.8687,0.8604,0.8627,0.638,0.9505,0.9902,123.35,Trained on grouped split; evaluated on grouped val

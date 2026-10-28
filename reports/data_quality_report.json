@@ -1,0 +1,54 @@
+{
+  "dataset_directory": "X:\\Mini Project\\brain-tumor-mri-classification\\dataset",
+  "total_images": 7200,
+  "corrupted_images": [],
+  "class_distribution": {
+    "Training/glioma": 1400,
+    "Training/meningioma": 1400,
+    "Training/notumor": 1400,
+    "Training/pituitary": 1400,
+    "Testing/glioma": 400,
+    "Testing/meningioma": 400,
+    "Testing/notumor": 400,
+    "Testing/pituitary": 400
+  },
+  "split_totals": {
+    "Training": 5600,
+    "Testing": 1600
+  },
+  "class_totals": {
+    "glioma": 1800,
+    "meningioma": 1800,
+    "notumor": 1800,
+    "pituitary": 1800
+  },
+  "unique_resolutions_count": 447,
+  "top_resolutions": {
+    "512x512": 5014,
+    "225x225": 338,
+    "630x630": 90,
+    "201x251": 57,
+    "228x221": 51
+  },
+  "channel_formats": {
+    "1": 3068,
+    "3": 4129,
+    "4": 3
+  },
+  "file_formats": {
+    "JPEG": 7196,
+    "PNG": 4
+  },
+  "exact_duplicate_groups": 153,
+  "exact_duplicates_crossing_train_test": 0,
+  "near_duplicate_pairs_count": 77229,
+  "cross_split_near_duplicate_pairs_count": 26589,
+  "contact_sheets_rendered": 20,
+  "intensity_outliers": {
+    "extremely_dark_count": 0,
+    "extremely_bright_count": 0,
+    "unusual_aspect_or_tiny_count": 0
+  },
+  "patient_identifier_status": "CONFIRMED: Dataset filenames (e.g. Tr-gl_0010.jpg, Te-me_0005.jpg) do NOT contain patient IDs or acquisition session metadata. Per-patient clinical leakage cannot be proved or disproved.",
+  "recommendation": "DO NOT automatically delete near-duplicates. Maintain strict train/test separation. Transparently disclose cross-split visual similarity candidates in publication reports."
+}

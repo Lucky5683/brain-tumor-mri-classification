@@ -1,0 +1,30 @@
+{
+  "experiment": "EfficientNet-B0 Multi-Scale Fusion",
+  "split_type": "perceptual_similarity_grouped",
+  "manifest_path": "X:\\Mini Project\\brain-tumor-mri-classification\\experiments\\duplicate_aware_split\\training_manifest.csv",
+  "class_names": [
+    "glioma",
+    "meningioma",
+    "notumor",
+    "pituitary"
+  ],
+  "training_images": 4447,
+  "validation_images": 1153,
+  "training_seed": 42,
+  "batch_size": 32,
+  "stage1_epochs_configured": 5,
+  "stage2_epochs_configured": 4,
+  "stage1_seconds": 959.0,
+  "stage2_seconds": 831.5,
+  "selected_stage": 2,
+  "selected_checkpoint": "X:\\Mini Project\\brain-tumor-mri-classification\\models\\multiscale_fusion_grouped_best.keras",
+  "best_validation_metrics": {
+    "epoch": 3,
+    "val_accuracy": 0.8638334778837814,
+    "val_macro_f1": 0.8582114316783322,
+    "val_macro_precision": 0.8687332099668553,
+    "val_macro_recall": 0.8603567340610629
+  },
+  "test_set_evaluated": false,
+  "caveat": "Similarity grouping uses within-class perceptual hashes; it does not establish patient-level independence."
+}

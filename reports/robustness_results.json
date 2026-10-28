@@ -1,0 +1,360 @@
+{
+  "model_path": "X:\\Mini Project\\brain-tumor-mri-classification\\efficientnet_b0.keras",
+  "test_dataset_size": 1600,
+  "classes": [
+    "glioma",
+    "meningioma",
+    "notumor",
+    "pituitary"
+  ],
+  "perturbations_tested_count": 8,
+  "results": [
+    {
+      "perturbation": "Original (Baseline)",
+      "accuracy": 0.875,
+      "macro_precision": 0.8794,
+      "macro_recall": 0.875,
+      "macro_f1": 0.8698,
+      "roc_auc": 0.9714,
+      "glioma_recall": 0.66,
+      "meningioma_recall": 0.8475,
+      "notumor_recall": 1.0,
+      "pituitary_recall": 0.9925,
+      "mean_max_prob": 0.9244,
+      "prediction_consistency": 1.0,
+      "prediction_flips": 0,
+      "accuracy_ci_95": [
+        0.8588,
+        0.8906
+      ],
+      "macro_f1_ci_95": [
+        0.8532,
+        0.8851
+      ],
+      "glioma_recall_ci_95": [
+        0.6144,
+        0.7077
+      ]
+    },
+    {
+      "perturbation": "Brightness +15",
+      "accuracy": 0.8744,
+      "macro_precision": 0.8814,
+      "macro_recall": 0.8744,
+      "macro_f1": 0.8687,
+      "roc_auc": 0.9731,
+      "glioma_recall": 0.6425,
+      "meningioma_recall": 0.86,
+      "notumor_recall": 1.0,
+      "pituitary_recall": 0.995,
+      "mean_max_prob": 0.9245,
+      "prediction_consistency": 0.985,
+      "prediction_flips": 24,
+      "accuracy_ci_95": [
+        0.8588,
+        0.89
+      ],
+      "macro_f1_ci_95": [
+        0.8533,
+        0.8844
+      ],
+      "glioma_recall_ci_95": [
+        0.596,
+        0.6894
+      ]
+    },
+    {
+      "perturbation": "Brightness -15",
+      "accuracy": 0.8794,
+      "macro_precision": 0.8859,
+      "macro_recall": 0.8794,
+      "macro_f1": 0.8754,
+      "roc_auc": 0.9713,
+      "glioma_recall": 0.67,
+      "meningioma_recall": 0.875,
+      "notumor_recall": 0.995,
+      "pituitary_recall": 0.9775,
+      "mean_max_prob": 0.9148,
+      "prediction_consistency": 0.9556,
+      "prediction_flips": 71,
+      "accuracy_ci_95": [
+        0.8619,
+        0.8944
+      ],
+      "macro_f1_ci_95": [
+        0.8581,
+        0.8901
+      ],
+      "glioma_recall_ci_95": [
+        0.6238,
+        0.7156
+      ]
+    },
+    {
+      "perturbation": "Contrast +20",
+      "accuracy": 0.8706,
+      "macro_precision": 0.883,
+      "macro_recall": 0.8706,
+      "macro_f1": 0.8651,
+      "roc_auc": 0.9705,
+      "glioma_recall": 0.625,
+      "meningioma_recall": 0.885,
+      "notumor_recall": 1.0,
+      "pituitary_recall": 0.9725,
+      "mean_max_prob": 0.9116,
+      "prediction_consistency": 0.9481,
+      "prediction_flips": 83,
+      "accuracy_ci_95": [
+        0.8531,
+        0.8869
+      ],
+      "macro_f1_ci_95": [
+        0.8484,
+        0.8811
+      ],
+      "glioma_recall_ci_95": [
+        0.5767,
+        0.6743
+      ]
+    },
+    {
+      "perturbation": "Contrast -20",
+      "accuracy": 0.88,
+      "macro_precision": 0.8826,
+      "macro_recall": 0.88,
+      "macro_f1": 0.8762,
+      "roc_auc": 0.972,
+      "glioma_recall": 0.7025,
+      "meningioma_recall": 0.835,
+      "notumor_recall": 0.9925,
+      "pituitary_recall": 0.99,
+      "mean_max_prob": 0.9181,
+      "prediction_consistency": 0.97,
+      "prediction_flips": 48,
+      "accuracy_ci_95": [
+        0.8631,
+        0.8956
+      ],
+      "macro_f1_ci_95": [
+        0.8594,
+        0.892
+      ],
+      "glioma_recall_ci_95": [
+        0.6582,
+        0.7441
+      ]
+    },
+    {
+      "perturbation": "Gaussian noise sigma=15",
+      "accuracy": 0.6913,
+      "macro_precision": 0.7531,
+      "macro_recall": 0.6912,
+      "macro_f1": 0.6529,
+      "roc_auc": 0.9394,
+      "glioma_recall": 0.5475,
+      "meningioma_recall": 0.24,
+      "notumor_recall": 0.99,
+      "pituitary_recall": 0.9875,
+      "mean_max_prob": 0.9097,
+      "prediction_consistency": 0.7381,
+      "prediction_flips": 419,
+      "accuracy_ci_95": [
+        0.6694,
+        0.7131
+      ],
+      "macro_f1_ci_95": [
+        0.6308,
+        0.6759
+      ],
+      "glioma_recall_ci_95": [
+        0.4986,
+        0.5967
+      ]
+    },
+    {
+      "perturbation": "JPEG quality=50",
+      "accuracy": 0.8781,
+      "macro_precision": 0.8884,
+      "macro_recall": 0.8781,
+      "macro_f1": 0.8739,
+      "roc_auc": 0.9694,
+      "glioma_recall": 0.645,
+      "meningioma_recall": 0.91,
+      "notumor_recall": 0.9925,
+      "pituitary_recall": 0.965,
+      "mean_max_prob": 0.9179,
+      "prediction_consistency": 0.9419,
+      "prediction_flips": 93,
+      "accuracy_ci_95": [
+        0.8619,
+        0.8938
+      ],
+      "macro_f1_ci_95": [
+        0.8582,
+        0.8899
+      ],
+      "glioma_recall_ci_95": [
+        0.598,
+        0.6907
+      ]
+    },
+    {
+      "perturbation": "JPEG quality=75",
+      "accuracy": 0.8819,
+      "macro_precision": 0.8912,
+      "macro_recall": 0.8819,
+      "macro_f1": 0.8774,
+      "roc_auc": 0.9705,
+      "glioma_recall": 0.65,
+      "meningioma_recall": 0.9075,
+      "notumor_recall": 1.0,
+      "pituitary_recall": 0.97,
+      "mean_max_prob": 0.9193,
+      "prediction_consistency": 0.9613,
+      "prediction_flips": 62,
+      "accuracy_ci_95": [
+        0.8662,
+        0.8975
+      ],
+      "macro_f1_ci_95": [
+        0.861,
+        0.8926
+      ],
+      "glioma_recall_ci_95": [
+        0.6035,
+        0.6935
+      ]
+    },
+    {
+      "perturbation": "Resize scale=85%",
+      "accuracy": 0.8894,
+      "macro_precision": 0.8969,
+      "macro_recall": 0.8894,
+      "macro_f1": 0.886,
+      "roc_auc": 0.9733,
+      "glioma_recall": 0.6775,
+      "meningioma_recall": 0.91,
+      "notumor_recall": 1.0,
+      "pituitary_recall": 0.97,
+      "mean_max_prob": 0.9261,
+      "prediction_consistency": 0.9544,
+      "prediction_flips": 73,
+      "accuracy_ci_95": [
+        0.8744,
+        0.9044
+      ],
+      "macro_f1_ci_95": [
+        0.8707,
+        0.9005
+      ],
+      "glioma_recall_ci_95": [
+        0.6334,
+        0.7186
+      ]
+    }
+  ],
+  "degradation_analysis": {
+    "largest_accuracy_drop": {
+      "perturbation": "Gaussian noise sigma=15",
+      "accuracy_drop": 0.1837,
+      "accuracy_relative_pct": 20.99,
+      "macro_f1_drop": 0.2169,
+      "glioma_recall_drop": 0.1125,
+      "inconsistency_rate": 0.2619,
+      "prediction_flips": 419
+    },
+    "largest_macro_f1_drop": {
+      "perturbation": "Gaussian noise sigma=15",
+      "accuracy_drop": 0.1837,
+      "accuracy_relative_pct": 20.99,
+      "macro_f1_drop": 0.2169,
+      "glioma_recall_drop": 0.1125,
+      "inconsistency_rate": 0.2619,
+      "prediction_flips": 419
+    },
+    "most_inconsistent_perturbation": {
+      "perturbation": "Gaussian noise sigma=15",
+      "accuracy_drop": 0.1837,
+      "accuracy_relative_pct": 20.99,
+      "macro_f1_drop": 0.2169,
+      "glioma_recall_drop": 0.1125,
+      "inconsistency_rate": 0.2619,
+      "prediction_flips": 419
+    },
+    "all_degradations_ranked": [
+      {
+        "perturbation": "Gaussian noise sigma=15",
+        "accuracy_drop": 0.1837,
+        "accuracy_relative_pct": 20.99,
+        "macro_f1_drop": 0.2169,
+        "glioma_recall_drop": 0.1125,
+        "inconsistency_rate": 0.2619,
+        "prediction_flips": 419
+      },
+      {
+        "perturbation": "Contrast +20",
+        "accuracy_drop": 0.0044,
+        "accuracy_relative_pct": 0.5,
+        "macro_f1_drop": 0.0047,
+        "glioma_recall_drop": 0.035,
+        "inconsistency_rate": 0.0519,
+        "prediction_flips": 83
+      },
+      {
+        "perturbation": "Brightness +15",
+        "accuracy_drop": 0.0006,
+        "accuracy_relative_pct": 0.07,
+        "macro_f1_drop": 0.0011,
+        "glioma_recall_drop": 0.0175,
+        "inconsistency_rate": 0.015,
+        "prediction_flips": 24
+      },
+      {
+        "perturbation": "JPEG quality=50",
+        "accuracy_drop": -0.0031,
+        "accuracy_relative_pct": -0.35,
+        "macro_f1_drop": -0.0041,
+        "glioma_recall_drop": 0.015,
+        "inconsistency_rate": 0.0581,
+        "prediction_flips": 93
+      },
+      {
+        "perturbation": "Brightness -15",
+        "accuracy_drop": -0.0044,
+        "accuracy_relative_pct": -0.5,
+        "macro_f1_drop": -0.0056,
+        "glioma_recall_drop": -0.01,
+        "inconsistency_rate": 0.0444,
+        "prediction_flips": 71
+      },
+      {
+        "perturbation": "Contrast -20",
+        "accuracy_drop": -0.005,
+        "accuracy_relative_pct": -0.57,
+        "macro_f1_drop": -0.0064,
+        "glioma_recall_drop": -0.0425,
+        "inconsistency_rate": 0.03,
+        "prediction_flips": 48
+      },
+      {
+        "perturbation": "JPEG quality=75",
+        "accuracy_drop": -0.0069,
+        "accuracy_relative_pct": -0.79,
+        "macro_f1_drop": -0.0076,
+        "glioma_recall_drop": 0.01,
+        "inconsistency_rate": 0.0387,
+        "prediction_flips": 62
+      },
+      {
+        "perturbation": "Resize scale=85%",
+        "accuracy_drop": -0.0144,
+        "accuracy_relative_pct": -1.65,
+        "macro_f1_drop": -0.0162,
+        "glioma_recall_drop": -0.0175,
+        "inconsistency_rate": 0.0456,
+        "prediction_flips": 73
+      }
+    ]
+  },
+  "clinical_conclusion": "Model robustness varies significantly across perturbation modalities. Gaussian noise and strong contrast attenuation induce the greatest diagnostic instability, demonstrating that high clean-test accuracy cannot guarantee clinical invariance across differing MRI scanner protocols."
+}

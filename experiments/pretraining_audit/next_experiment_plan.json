@@ -1,0 +1,96 @@
+{
+  "experiment_name": "EfficientNet-B0 Multi-Scale Fusion Fine-Tuning V2",
+  "protocol": "Perceptual-Similarity Grouped Validation (Leakage-Aware)",
+  "objective": "Improve classification generalization, specifically mitigating meningioma-pituitary and glioma-meningioma confusion, without degrading overall accuracy or overfitting.",
+  "starting_checkpoint": {
+    "path": "models/multiscale_fusion_grouped_best.keras",
+    "verified_exists": true,
+    "current_val_accuracy": 0.8638334778837814,
+    "current_val_macro_f1": 0.8582114316783322,
+    "total_parameters": 4427687,
+    "trainable_parameters": 1832676,
+    "non_trainable_parameters": 2595011
+  },
+  "data_configuration": {
+    "manifest_path": "experiments/duplicate_aware_split/training_manifest.csv",
+    "verified_samples": {
+      "training_samples": 4447,
+      "validation_samples": 1153,
+      "total_samples": 5600
+    },
+    "batch_size": 32,
+    "image_size": [224, 224, 3],
+    "augmentation_applied_to": "training_only",
+    "official_test_set_status": "LOCKED_AND_ISOLATED (dataset/Testing with 1,600 images will NOT be evaluated)"
+  },
+  "layer_unfreezing_plan": {
+    "backbone": "efficientnetb0",
+    "strategy": "selective_top_n_non_batchnorm",
+    "unfrozen_layer_count": 20,
+    "intermediate_feature_layer": "block6d_add (192-d GAP vector)",
+    "deep_feature_layer": "top_activation (1280-d GAP vector)",
+    "fusion_layer": "Concatenate (1472-d feature vector)",
+    "head_layers": [
+      "fusion_dropout (rate=0.35)",
+      "fusion_dense (256 units, ReLU)",
+      "classifier_dropout (rate=0.35)",
+      "fusion_predictions (4 units, Softmax)"
+    ],
+    "batch_normalization_policy": "STRICTLY_FROZEN (all tf.keras.layers.BatchNormalization layers kept trainable=False to protect batch statistics on CPU/small batches)"
+  },
+  "hyperparameters": {
+    "optimizer": "Adam",
+    "initial_learning_rate": 5e-06,
+    "lr_scheduler": {
+      "type": "ReduceLROnPlateau",
+      "monitor": "val_loss",
+      "factor": 0.5,
+      "patience": 1,
+      "min_lr": 1e-07,
+      "verbose": 1
+    },
+    "max_epochs": 5,
+    "early_stopping": {
+      "monitor": "val_macro_f1",
+      "mode": "max",
+      "patience": 2,
+      "restore_best_weights": true
+    },
+    "checkpoint_selection": {
+      "metric": "val_macro_f1",
+      "mode": "max",
+      "save_best_only": true
+    }
+  },
+  "per_class_safeguards": {
+    "diagnostic_target": "Mitigate meningioma recall deficit (currently 63.80% due to 64 misclassified as pituitary) and glioma-meningioma confusion (29 misclassified)",
+    "class_weights": {
+      "0_glioma": 1.10,
+      "1_meningioma": 1.25,
+      "2_notumor": 1.00,
+      "3_pituitary": 0.90
+    },
+    "acceptance_criteria": {
+      "min_val_macro_f1": 0.8582,
+      "min_meningioma_recall": 0.6500,
+      "min_glioma_recall": 0.8500,
+      "degradation_tolerance": "Reject checkpoint if glioma recall falls below 0.8500 or validation macro-F1 degrades"
+    }
+  },
+  "output_paths": {
+    "best_checkpoint": "models/multiscale_fusion_finetuned_v2.keras",
+    "epoch_checkpoint_pattern": "models/checkpoints/multiscale_fusion_v2_epoch_{epoch:02d}.keras",
+    "results_json": "experiments/pretraining_audit/multiscale_fusion_v2_results.json",
+    "history_csv": "experiments/pretraining_audit/multiscale_fusion_v2_history.csv"
+  },
+  "crash_recovery_protocol": {
+    "state_persistence": "Epoch-end checkpoint saving to models/checkpoints/",
+    "logging": "Append epoch-level metrics and learning rates directly to history_csv after each epoch",
+    "resumption_strategy": "If process terminates prematurely, script can resume by loading the latest complete epoch checkpoint and adjusting initial_epoch parameter"
+  },
+  "methodological_caveats": [
+    "Grouping by perceptual similarity (pHash threshold <= 4) mitigates exact and near-duplicate leakage across train and validation splits.",
+    "True patient-level independence CANNOT be claimed because patient IDs, clinical metadata, and DICOM headers are absent from the open-source dataset.",
+    "Official test set remains locked and unvisited until model architecture and training hyperparameters are completely frozen."
+  ]
+}

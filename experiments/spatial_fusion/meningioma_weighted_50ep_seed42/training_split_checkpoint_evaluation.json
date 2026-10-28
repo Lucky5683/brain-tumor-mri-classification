@@ -1,0 +1,25 @@
+{
+  "evaluation_type": "saved_checkpoint_training_split_evaluation",
+  "checkpoint": "experiments\\spatial_fusion\\meningioma_weighted_50ep_seed42\\best_model.keras",
+  "manifest": "experiments\\duplicate_aware_split\\training_manifest.csv",
+  "split": "train",
+  "number_of_images": 4447,
+  "classes": [
+    "glioma",
+    "meningioma",
+    "notumor",
+    "pituitary"
+  ],
+  "accuracy": 0.9527771531369462,
+  "macro_f1": 0.952570304976383,
+  "balanced_accuracy": 0.9530450992143806,
+  "unweighted_sparse_categorical_crossentropy": 0.12648823857307434,
+  "class_weighted_sparse_categorical_crossentropy": 0.16188783588364514,
+  "class_weights": {
+    "glioma": 1.0,
+    "meningioma": 1.5,
+    "notumor": 1.0,
+    "pituitary": 1.0
+  },
+  "note": "Metrics were computed by evaluating the saved checkpoint on the unaugmented training split. They are not historical epoch-50 training logs and do not reproduce training-mode augmentation or dropout."
+}

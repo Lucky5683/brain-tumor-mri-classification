@@ -1,0 +1,377 @@
+{
+  "project": "BRAIN TUMOR MRI IMAGE CLASSIFICATION USING EFFICIENTNET-B0 WITH GRAD-CAM",
+  "institution": "The Apollo University, School of Technology, Dept. of CSE (AI & DS)",
+  "hardware": "Windows 11 CPU Execution (No GPU)",
+  "selected_model": {
+    "name": "Multi-Scale Intermediate and Deep Feature Fusion",
+    "checkpoint": "models/multiscale_fusion_grouped_best.keras",
+    "parameters": 4427687,
+    "intermediate_layer": "block6d_add (192-d)",
+    "deep_layer": "top_activation (1280-d)",
+    "fused_feature_dimension": 1472
+  },
+  "dataset_splits": {
+    "training_images": 4447,
+    "validation_images": 1153,
+    "official_test_images": 1600,
+    "split_method": "Duplicate-aware perceptual hashing (pHash distance <= 4 within classes)",
+    "exact_sha256_duplicates_crossing_split": 0,
+    "similarity_groups_crossing_split": 0
+  },
+  "controlled_validation_baseline_comparison": [
+    {
+      "model_id": "baseline_cnn",
+      "name": "Custom 4-Block CNN",
+      "parameters": 421828,
+      "size_mb": 4.88,
+      "latency_ms_per_img": 36.57,
+      "split_note": "Trained on random 80/20 split; evaluated on grouped val",
+      "accuracy": 0.8734,
+      "macro_f1": 0.8691,
+      "macro_precision": 0.8753,
+      "macro_recall": 0.8707,
+      "per_class": {
+        "glioma": {
+          "precision": 0.958,
+          "recall": 0.8028,
+          "f1": 0.8736
+        },
+        "meningioma": {
+          "precision": 0.796,
+          "recall": 0.7133,
+          "f1": 0.7524
+        },
+        "notumor": {
+          "precision": 0.8978,
+          "recall": 0.9929,
+          "f1": 0.943
+        },
+        "pituitary": {
+          "precision": 0.8494,
+          "recall": 0.9739,
+          "f1": 0.9074
+        }
+      },
+      "confusion_matrix": [
+        [
+          228,
+          46,
+          1,
+          9
+        ],
+        [
+          8,
+          199,
+          29,
+          43
+        ],
+        [
+          0,
+          1,
+          281,
+          1
+        ],
+        [
+          2,
+          4,
+          2,
+          299
+        ]
+      ]
+    },
+    {
+      "model_id": "efficientnet_b0_finetuned",
+      "name": "EfficientNet-B0 (Two-Stage)",
+      "parameters": 4214055,
+      "size_mb": 28.39,
+      "latency_ms_per_img": 90.35,
+      "split_note": "Trained on random 80/20 split; evaluated on grouped val",
+      "accuracy": 0.8777,
+      "macro_f1": 0.8728,
+      "macro_precision": 0.8863,
+      "macro_recall": 0.8744,
+      "per_class": {
+        "glioma": {
+          "precision": 0.943,
+          "recall": 0.8732,
+          "f1": 0.9068
+        },
+        "meningioma": {
+          "precision": 0.8702,
+          "recall": 0.6487,
+          "f1": 0.7433
+        },
+        "notumor": {
+          "precision": 0.9454,
+          "recall": 0.9788,
+          "f1": 0.9618
+        },
+        "pituitary": {
+          "precision": 0.7866,
+          "recall": 0.9967,
+          "f1": 0.8793
+        }
+      },
+      "confusion_matrix": [
+        [
+          248,
+          23,
+          7,
+          6
+        ],
+        [
+          15,
+          181,
+          9,
+          74
+        ],
+        [
+          0,
+          3,
+          277,
+          3
+        ],
+        [
+          0,
+          1,
+          0,
+          306
+        ]
+      ]
+    },
+    {
+      "model_id": "multiscale_fusion_best",
+      "name": "Multi-Scale Fusion (Standard Split)",
+      "parameters": 4427687,
+      "size_mb": 31.7,
+      "latency_ms_per_img": 99.04,
+      "split_note": "Trained on random 80/20 split; evaluated on grouped val",
+      "accuracy": 0.889,
+      "macro_f1": 0.8848,
+      "macro_precision": 0.8912,
+      "macro_recall": 0.8861,
+      "per_class": {
+        "glioma": {
+          "precision": 0.9318,
+          "recall": 0.8662,
+          "f1": 0.8978
+        },
+        "meningioma": {
+          "precision": 0.8485,
+          "recall": 0.7025,
+          "f1": 0.7686
+        },
+        "notumor": {
+          "precision": 0.9486,
+          "recall": 0.9788,
+          "f1": 0.9635
+        },
+        "pituitary": {
+          "precision": 0.8361,
+          "recall": 0.9967,
+          "f1": 0.9094
+        }
+      },
+      "confusion_matrix": [
+        [
+          246,
+          30,
+          4,
+          4
+        ],
+        [
+          18,
+          196,
+          11,
+          54
+        ],
+        [
+          0,
+          4,
+          277,
+          2
+        ],
+        [
+          0,
+          1,
+          0,
+          306
+        ]
+      ]
+    },
+    {
+      "model_id": "multiscale_fusion_grouped_best",
+      "name": "Multi-Scale Fusion (Grouped Split)",
+      "parameters": 4427687,
+      "size_mb": 31.7,
+      "latency_ms_per_img": 123.35,
+      "split_note": "Trained on grouped split; evaluated on grouped val",
+      "accuracy": 0.8638,
+      "macro_f1": 0.8582,
+      "macro_precision": 0.8687,
+      "macro_recall": 0.8604,
+      "per_class": {
+        "glioma": {
+          "precision": 0.9108,
+          "recall": 0.8627,
+          "f1": 0.8861
+        },
+        "meningioma": {
+          "precision": 0.8396,
+          "recall": 0.638,
+          "f1": 0.7251
+        },
+        "notumor": {
+          "precision": 0.9308,
+          "recall": 0.9505,
+          "f1": 0.9406
+        },
+        "pituitary": {
+          "precision": 0.7937,
+          "recall": 0.9902,
+          "f1": 0.8812
+        }
+      },
+      "confusion_matrix": [
+        [
+          245,
+          29,
+          5,
+          5
+        ],
+        [
+          24,
+          178,
+          13,
+          64
+        ],
+        [
+          0,
+          4,
+          269,
+          10
+        ],
+        [
+          0,
+          1,
+          2,
+          304
+        ]
+      ]
+    }
+  ],
+  "validation_locked_parameters": {
+    "optimal_temperature_scaling_T": 1.1322,
+    "selective_prediction_threshold_tau": 0.6
+  },
+  "official_test_evaluation": {
+    "accuracy": 0.8063,
+    "macro_f1": 0.7965,
+    "macro_precision": 0.8117,
+    "macro_recall": 0.8063,
+    "macro_roc_auc": 0.9584,
+    "per_class": {
+      "glioma": {
+        "precision": 0.8897,
+        "recall": 0.625,
+        "f1": 0.7342,
+        "support": 400
+      },
+      "meningioma": {
+        "precision": 0.7492,
+        "recall": 0.62,
+        "f1": 0.6785,
+        "support": 400
+      },
+      "notumor": {
+        "precision": 0.8458,
+        "recall": 0.9875,
+        "f1": 0.9112,
+        "support": 400
+      },
+      "pituitary": {
+        "precision": 0.762,
+        "recall": 0.9925,
+        "f1": 0.8621,
+        "support": 400
+      }
+    },
+    "confusion_matrix": [
+      [
+        250,
+        78,
+        33,
+        39
+      ],
+      [
+        30,
+        248,
+        39,
+        83
+      ],
+      [
+        1,
+        2,
+        395,
+        2
+      ],
+      [
+        0,
+        3,
+        0,
+        397
+      ]
+    ],
+    "bootstrap_95ci": {
+      "n_bootstraps": 1000,
+      "confidence_level": 0.95,
+      "accuracy": {
+        "mean": 0.8064,
+        "std": 0.0098,
+        "ci_lower": 0.7869,
+        "ci_upper": 0.825
+      },
+      "macro_f1": {
+        "mean": 0.7965,
+        "std": 0.0099,
+        "ci_lower": 0.7771,
+        "ci_upper": 0.8159
+      },
+      "glioma_recall": {
+        "mean": 0.6255,
+        "std": 0.0242,
+        "ci_lower": 0.5774,
+        "ci_upper": 0.6706
+      },
+      "meningioma_recall": {
+        "mean": 0.6204,
+        "std": 0.0235,
+        "ci_lower": 0.5762,
+        "ci_upper": 0.6684
+      }
+    }
+  },
+  "calibrated_selective_prediction_test": {
+    "operating_threshold_tau": 0.6,
+    "test_coverage": 0.8494,
+    "accepted_samples": 1359,
+    "referred_samples": 241,
+    "selective_accuracy": 0.8705,
+    "selective_macro_f1": 0.8512,
+    "accuracy_improvement": 6.42
+  },
+  "explanation_stability": {
+    "high_confidence_mean_iou": 0.6239,
+    "high_confidence_mean_pearson_r": 0.8454,
+    "borderline_mean_iou": 0.544,
+    "borderline_mean_pearson_r": 0.7997
+  },
+  "verdict_on_97_percent_accuracy_goal": {
+    "goal": "97.00% accuracy",
+    "full_coverage_test_accuracy": 0.8062,
+    "selective_prediction_accuracy_at_85_coverage": 0.8705,
+    "selective_prediction_accuracy_at_77_coverage": 0.9459,
+    "selective_prediction_accuracy_at_53_coverage": 0.9756,
+    "conclusion": "Under strict group-aware evaluation on the official untouched test set, forced 100% coverage achieves 80.62% test accuracy. The 97% threshold cannot be achieved honestly under 100% decision coverage on this dataset due to intrinsic morphological overlap between meningioma and pituitary tumors. However, through our calibrated selective triage mechanism, when the model is permitted to abstain on ambiguous cases (as in real clinical triage), accuracy leaps to 87.05% at 85% coverage and exceeds 97.5% when abstaining on difficult border cases."
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "project_title": "BRAIN TUMOR MRI IMAGE CLASSIFICATION USING EFFICIENTNET-B0 WITH GRAD-CAM",
+  "selected_architecture": "Multi-Scale Intermediate & Deep Feature Fusion (EfficientNet-B0 backbone)",
+  "feature_layers": {
+    "intermediate": "block6d_add (192-dim, 14x14 spatial)",
+    "deep": "top_activation (1280-dim, 7x7 spatial)",
+    "fused_vector_dim": 1472,
+    "dense_head": "Dropout(0.35) -> Dense(256, relu) -> Dropout(0.35) -> Dense(4, softmax)"
+  },
+  "selected_checkpoint": "X:\\Mini Project\\brain-tumor-mri-classification\\models\\multiscale_fusion_grouped_best.keras",
+  "dataset_split": "Duplicate-aware similarity grouping (pHash distance <= 4 within classes)",
+  "training_samples": 4447,
+  "validation_samples": 1153,
+  "official_test_samples": 1600,
+  "calibration": {
+    "method": "Post-hoc Temperature Scaling strictly on validation logits",
+    "optimal_temperature_T": 1.1322,
+    "test_uncalibrated_ece": 0.0629,
+    "test_calibrated_ece": 0.0458,
+    "test_calibrated_brier": 0.2711
+  },
+  "official_test_metrics_full_coverage": {
+    "accuracy": 0.8063,
+    "macro_f1": 0.7965,
+    "macro_precision": 0.8117,
+    "macro_recall": 0.8063,
+    "macro_roc_auc": 0.9584,
+    "per_class": {
+      "glioma": {
+        "precision": 0.8897,
+        "recall": 0.625,
+        "f1": 0.7342,
+        "support": 400
+      },
+      "meningioma": {
+        "precision": 0.7492,
+        "recall": 0.62,
+        "f1": 0.6785,
+        "support": 400
+      },
+      "notumor": {
+        "precision": 0.8458,
+        "recall": 0.9875,
+        "f1": 0.9112,
+        "support": 400
+      },
+      "pituitary": {
+        "precision": 0.762,
+        "recall": 0.9925,
+        "f1": 0.8621,
+        "support": 400
+      }
+    },
+    "confusion_matrix": [
+      [
+        250,
+        78,
+        33,
+        39
+      ],
+      [
+        30,
+        248,
+        39,
+        83
+      ],
+      [
+        1,
+        2,
+        395,
+        2
+      ],
+      [
+        0,
+        3,
+        0,
+        397
+      ]
+    ],
+    "bootstrap_95ci": {
+      "n_bootstraps": 1000,
+      "confidence_level": 0.95,
+      "accuracy": {
+        "mean": 0.8064,
+        "std": 0.0098,
+        "ci_lower": 0.7869,
+        "ci_upper": 0.825
+      },
+      "macro_f1": {
+        "mean": 0.7965,
+        "std": 0.0099,
+        "ci_lower": 0.7771,
+        "ci_upper": 0.8159
+      },
+      "glioma_recall": {
+        "mean": 0.6255,
+        "std": 0.0242,
+        "ci_lower": 0.5774,
+        "ci_upper": 0.6706
+      },
+      "meningioma_recall": {
+        "mean": 0.6204,
+        "std": 0.0235,
+        "ci_lower": 0.5762,
+        "ci_upper": 0.6684
+      }
+    }
+  },
+  "calibrated_selective_prediction": {
+    "operating_threshold_tau": 0.6,
+    "test_coverage": 0.8494,
+    "accepted_samples": 1359,
+    "referred_samples": 241,
+    "selective_accuracy": 0.8705,
+    "selective_macro_f1": 0.8512,
+    "accuracy_improvement": 6.42
+  },
+  "comparison_with_baseline_efficientnet_b0": {
+    "baseline_test_accuracy": 0.875,
+    "baseline_test_macro_f1": 0.8699,
+    "baseline_glioma_recall": 0.6575,
+    "multiscale_test_accuracy": 0.8063,
+    "multiscale_test_macro_f1": 0.7965,
+    "multiscale_glioma_recall": 0.625,
+    "selective_accuracy": 0.8705,
+    "selective_macro_f1": 0.8512
+  },
+  "clinical_limitations": [
+    "Educational research prototype; NOT approved for clinical diagnostics.",
+    "Selective prediction refers ambiguous / low-confidence scans for neuroradiologist review.",
+    "Grad-CAM heatmaps highlight model attribution, not anatomical lesion segmentation.",
+    "Dataset lacks institutional patient IDs, meaning patient-level slice clustering remains an unavoidable empirical limitation."
+  ]
+}

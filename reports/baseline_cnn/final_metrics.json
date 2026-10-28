@@ -1,0 +1,103 @@
+{
+  "model_path": "X:\\Mini Project\\brain-tumor-mri-classification\\baseline_cnn.keras",
+  "test_images_count": 1600,
+  "metrics": {
+    "accuracy": 0.7806,
+    "precision_macro": 0.8031,
+    "precision_weighted": 0.8031,
+    "recall_macro": 0.7806,
+    "recall_weighted": 0.7806,
+    "f1_macro": 0.7675,
+    "f1_weighted": 0.7675,
+    "roc_auc_macro_ovr": 0.9341,
+    "roc_auc_weighted_ovr": 0.9341,
+    "per_class": {
+      "glioma": {
+        "precision": 0.9625,
+        "recall": 0.5775,
+        "f1": 0.7219,
+        "support": 400
+      },
+      "meningioma": {
+        "precision": 0.745,
+        "recall": 0.555,
+        "f1": 0.6361,
+        "support": 400
+      },
+      "notumor": {
+        "precision": 0.708,
+        "recall": 1.0,
+        "f1": 0.829,
+        "support": 400
+      },
+      "pituitary": {
+        "precision": 0.7968,
+        "recall": 0.99,
+        "f1": 0.8829,
+        "support": 400
+      }
+    }
+  },
+  "confusion_matrix": [
+    [
+      231,
+      72,
+      64,
+      33
+    ],
+    [
+      9,
+      222,
+      101,
+      68
+    ],
+    [
+      0,
+      0,
+      400,
+      0
+    ],
+    [
+      0,
+      4,
+      0,
+      396
+    ]
+  ],
+  "bootstrap_confidence_intervals": {
+    "n_bootstraps": 1000,
+    "confidence_level": 0.95,
+    "accuracy": {
+      "mean": 0.7806,
+      "std": 0.0103,
+      "ci_lower": 0.7612,
+      "ci_upper": 0.8
+    },
+    "macro_f1": {
+      "mean": 0.7673,
+      "std": 0.0105,
+      "ci_lower": 0.7474,
+      "ci_upper": 0.7874
+    },
+    "macro_recall": {
+      "mean": 0.7807,
+      "std": 0.0088,
+      "ci_lower": 0.7634,
+      "ci_upper": 0.7973
+    },
+    "macro_precision": {
+      "mean": 0.8032,
+      "std": 0.0096,
+      "ci_lower": 0.7843,
+      "ci_upper": 0.8211
+    },
+    "glioma_recall": {
+      "mean": 0.5778,
+      "std": 0.0248,
+      "ci_lower": 0.5274,
+      "ci_upper": 0.6241
+    },
+    "note": "Bootstrap confidence intervals reflect test sampling distribution uncertainty and do not replace external clinical validation."
+  },
+  "evaluation_notes": "Evaluation performed strictly on untouched official test set. Bootstrap intervals reflect test sampling distribution only."
+}

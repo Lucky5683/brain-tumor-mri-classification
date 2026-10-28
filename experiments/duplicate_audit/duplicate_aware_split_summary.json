@@ -1,0 +1,41 @@
+{
+  "training_directory": "X:\\Mini Project\\brain-tumor-mri-classification\\dataset\\Training",
+  "total_images": 5600,
+  "unique_sha256_groups": 5429,
+  "train_images": 4461,
+  "validation_images": 1139,
+  "requested_validation_fraction": 0.2,
+  "random_seed": 42,
+  "class_counts": {
+    "glioma": {
+      "total": 1400,
+      "train": 1121,
+      "validation": 279,
+      "validation_target": 280.0
+    },
+    "meningioma": {
+      "total": 1400,
+      "train": 1121,
+      "validation": 279,
+      "validation_target": 280.0
+    },
+    "notumor": {
+      "total": 1400,
+      "train": 1100,
+      "validation": 300,
+      "validation_target": 280.0
+    },
+    "pituitary": {
+      "total": 1400,
+      "train": 1119,
+      "validation": 281,
+      "validation_target": 280.0
+    }
+  },
+  "cross_split_exact_duplicate_groups": 0,
+  "cross_label_exact_duplicate_groups": 0,
+  "cross_label_conflicts": [],
+  "optimization_score": 0.0054280931122448976,
+  "manifest": "X:\\Mini Project\\brain-tumor-mri-classification\\experiments\\duplicate_audit\\duplicate_aware_split_manifest.csv",
+  "official_testing_directory_modified": false
+}

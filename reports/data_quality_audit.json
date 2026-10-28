@@ -1,0 +1,42 @@
+{
+  "dataset_summary": {
+    "training_images": 5600,
+    "testing_images": 1600,
+    "classes": [
+      "glioma",
+      "meningioma",
+      "notumor",
+      "pituitary"
+    ],
+    "per_class_training": {
+      "glioma": 1400,
+      "meningioma": 1400,
+      "notumor": 1400,
+      "pituitary": 1400
+    },
+    "per_class_testing": {
+      "glioma": 400,
+      "meningioma": 400,
+      "notumor": 400,
+      "pituitary": 400
+    }
+  },
+  "split_integrity": {
+    "manifest_rows": 5600,
+    "train_samples": 4447,
+    "validation_samples": 1153,
+    "exact_sha256_crossings": 0,
+    "similarity_groups": 4005,
+    "singleton_groups": 3218,
+    "multi_image_groups": 787,
+    "max_group_size": 22,
+    "cross_class_pairs": 24,
+    "cross_split_cross_class_pairs": 5,
+    "limitations": [
+      "Dataset lacks verified patient identifiers; perceptual similarity is an empirical proxy, not proof of subject-level separation.",
+      "Similarity grouping was constructed within each class; 5 cross-class pHash candidate pairs exist across the train/validation split.",
+      "Visual review of the 5 cross-class pairs confirmed they are not exact duplicate scans, but represent similar axial slice geometry.",
+      "Large similarity groups (up to size 22) reflect repeated slices or burst imaging in the source dataset."
+    ]
+  }
+}

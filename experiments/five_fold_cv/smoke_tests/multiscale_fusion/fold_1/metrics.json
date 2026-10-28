@@ -1,0 +1,19 @@
+{
+  "model": "multiscale_fusion",
+  "fold": 1,
+  "smoke_test": true,
+  "epochs_requested": 2,
+  "epochs_completed": 2,
+  "validation_loss": 0.4140797555446625,
+  "accuracy": 0.8440766334533691,
+  "macro_precision": 0.8578105329683797,
+  "macro_recall": 0.8426372253580734,
+  "macro_f1": 0.8421035815068139,
+  "class_names": [
+    "glioma",
+    "meningioma",
+    "notumor",
+    "pituitary"
+  ],
+  "note": "Smoke test only; not a full CV result or official test result."
+}

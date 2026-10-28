@@ -1,0 +1,19 @@
+{
+  "model": "spatial_fusion",
+  "fold": 1,
+  "smoke_test": true,
+  "epochs_requested": 2,
+  "epochs_completed": 2,
+  "validation_loss": 0.332282155752182,
+  "accuracy": 0.8797909617424011,
+  "macro_precision": 0.8879571358159951,
+  "macro_recall": 0.8800886196645914,
+  "macro_f1": 0.8800334476719978,
+  "class_names": [
+    "glioma",
+    "meningioma",
+    "notumor",
+    "pituitary"
+  ],
+  "note": "Smoke test only; not a full CV result or official test result."
+}

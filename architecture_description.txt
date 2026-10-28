@@ -1,0 +1,175 @@
+====================================================================================================
+CHAPTER 3.2: SYSTEM ARCHITECTURE SPECIFICATION
+Project: Brain Tumor MRI Image Classification Using EfficientNet-B0 with Grad-CAM
+Institution: The Apollo University, School of Technology, Dept. of CSE (AI & DS), Chittoor
+Course: B.Tech Computer Science & Engineering (Artificial Intelligence & Data Science)
+====================================================================================================
+
+3.2 SYSTEM ARCHITECTURE
+
+3.2.1 Architectural Overview and Design Philosophy
+The proposed system architecture is formulated around a decoupled, two-track paradigm that strictly separates offline model development, data auditing, and benchmark evaluation (Pipeline 1) from online real-time inference, visual explainability, and clinical decision support (Pipeline 2). This structural separation guarantees that:
+1. The official test dataset (N = 1,600 images) remains strictly isolated and is never accessed during model training, hyperparameter tuning, or live user inference.
+2. The user-facing application operates purely in feedforward evaluation mode, loading pre-compiled and validated model checkpoints from disk without incurring runtime training overhead.
+3. Probability calibration parameters are fitted exclusively on an independent validation split, preventing overconfident miscalibration from contaminating live diagnostic scores.
+4. Visual explainability routines compute gradient attributions post-hoc from designated terminal convolutional feature maps without perturbing network classification weights.
+
+Figure 3.1 illustrates the complete end-to-end system architecture, depicting data flow tensors, component boundaries, persistent artifact repositories, and inter-pipeline interactions.
+
+
+----------------------------------------------------------------------------------------------------
+3.2.2 PIPELINE 1: OFFLINE DATASET AUDIT, MODEL TRAINING & BENCHMARK EVALUATION
+----------------------------------------------------------------------------------------------------
+
+Pipeline 1 encompasses the offline engineering lifecycle responsible for dataset integrity verification, stratified dataset partitioning, deep neural network training, post-hoc calibration fitting, and rigorous benchmark evaluation.
+
+1. Multiclass MRI Dataset Repository (dataset/)
+   - Source Benchmark: Consolidated Kaggle Brain Tumor MRI benchmark (curated by Masoud Nickparvar, incorporating Sartaj, Figshare, and Br35H collections).
+   - Total Scanned Images: 7,200 two-dimensional axial-view MRI scans.
+   - Diagnostic Classes: Perfectly balanced across four mutually exclusive categories (1,800 images per class, representing exactly 25.0% each):
+     a. Glioma: Primary malignant intra-axial brain neoplasm arising from glial cells.
+     b. Meningioma: Predominantly benign extra-axial neoplasm originating from the arachnoid maternal meninges.
+     c. Pituitary Tumor: Neoplasm developing in the sellar region from pituitary gland parenchyma.
+     d. No Tumor: Normal cranial MRI scans devoid of detectable pathological mass lesions.
+   - Physical Disk Layout:
+     * dataset/Training/: 5,600 images (1,400 images per class, representing 77.78% of the dataset).
+     * dataset/Testing/: 1,600 images (400 images per class, representing 22.22% of the dataset).
+   - Integrity & Leakage Verification:
+     * File Integrity: 100% of images are uncorrupted and decodable via PIL and OpenCV (7,196 JPEG, 4 PNG).
+     * Exact Duplicate Audit: SHA-256 cryptographic hashing confirmed zero (0) byte-for-byte cross-split duplicate files between dataset/Training and dataset/Testing.
+     * Perceptual Similarity & Volumetric Slice Audit: Difference hashing (dHash <= 4) identified 26,589 near-duplicate cross-split pairs. Visual examination confirms these pairs represent adjacent 2D axial slices (2 to 5 mm spacing) extracted from identical 3D volumetric patient scan acquisitions where original DICOM metadata was stripped by public benchmark curators. This empirical finding is explicitly acknowledged as a benchmark property rather than hidden.
+
+2. Stratified Data Loading & Conservative Medical Augmentation (src/data/dataset.py & augmentation.py)
+   - Stratified Partitioning: The 5,600 training images are deterministically split into:
+     * Training Partition (80% = 4,480 images): Subject to online data augmentation during training.
+     * Validation Partition (20% = 1,120 images): Held unaugmented for EarlyStopping monitoring, ModelCheckpoint selection (monitoring Validation Macro F1), and optimal temperature calibration fitting.
+   - Conservative Medical Data Augmentation:
+     * Bilateral Horizontal Flips: Enabled (reflecting neuro-anatomical axial symmetry).
+     * Vertical Flips: Strictly prohibited (would invert superior/inferior cranial anatomical orientation, creating biologically invalid scans).
+     * Spatial Translations: Random shifts bounded within +/- 5% of image width and height.
+     * Random Rotation: Bounded within +/- 5% (~18 degrees) to prevent excessive diagonal black-border artifacts.
+     * Random Zoom: Bounded within +/- 8% scale variation.
+     * Brightness & Contrast Perturbations: Constrained to +/- 10% to simulate inter-scanner radiofrequency coil gain differences.
+   - Image Standardization: Anti-aliased bilinear resizing to standardized dimensions (224 x 224 x 3 RGB).
+
+3. Deep Learning Architectures & Offline Model Training (scripts/train_cnn.py & train_efficientnet.py)
+   - Model Architecture A: Custom 4-Block Convolutional Neural Network (Baseline)
+     * Implementation: Modular tf.keras.Sequential model in src/models/custom_cnn.py.
+     * Convolutional Blocks: 4 sequential stages comprising Conv2D (32, 64, 128, and 256 filters with 3x3 kernels, stride 1, 'same' padding, ReLU activation) followed by MaxPooling2D (2x2 pool size, stride 2).
+     * Classification Head: GlobalAveragePooling2D -> Dropout(rate = 0.30) -> Dense(128 units, ReLU) -> Dropout(rate = 0.40) -> Dense(4 units, Softmax).
+     * Parameter Count: 421,828 parameters (100% trainable from scratch).
+     * Training Setup: Adam optimizer (learning rate = 1e-3), Sparse Categorical Cross-Entropy loss, batch size 32, maximum 30 epochs with EarlyStopping (patience = 7).
+   - Model Architecture B: EfficientNet-B0 Compound-Scaled Transfer Learning (Primary)
+     * Implementation: Functional tf.keras.Model in src/models/efficientnet.py.
+     * Backbone: ImageNet-pretrained EfficientNet-B0 backbone utilizing mobile inverted bottleneck convolutions (MBConv) with squeeze-and-excitation (SE) optimization and compound depth/width/resolution scaling.
+     * Classification Head: GlobalAveragePooling2D -> Dropout(rate = 0.30) -> Dense(128 units, ReLU) -> Dropout(rate = 0.30) -> Dense(4 units, Softmax).
+     * Total Parameters: 4,214,464 parameters; Classification head comprises 164,484 trainable parameters.
+     * Two-Stage Training Protocol:
+       Stage 1 (Feature Extraction): Backbone completely frozen (trainable = False, BatchNormalization layers kept strictly in inference mode), training only the dense head using Adam (learning rate = 1e-3, 15 epochs).
+       Stage 2 (Fine-Tuning): Top 20 convolutional layers of the MBConv backbone unfrozen, trained with a reduced learning rate (Adam, lr = 1e-5, 10 epochs). BatchNormalization layers remain frozen to preserve running mean and variance statistics.
+
+4. Offline Benchmark Evaluation & Metric Verification (scripts/evaluate.py & display_metrics.py)
+   - Test Partition: Official untouched test directory (dataset/Testing/, N = 1,600 images: 400 Glioma, 400 Meningioma, 400 No Tumor, 400 Pituitary).
+   - Computed Evaluation Metrics: Overall Accuracy, Macro Precision, Macro Recall, Macro F1-Score, One-vs-Rest Macro ROC-AUC, Per-Class Precision/Recall/F1, and Confusion Matrices.
+   - Uncertainty Quantification: 95% non-parametric bootstrap confidence intervals computed over 1,000 bootstrap iterations.
+   - Verified Empirical Benchmark Results:
+     * Custom CNN Baseline: 68.75% Accuracy (95% CI: [66.45%, 71.05%]), Macro F1: 0.6624, Macro ROC-AUC: 0.8821. Suffers from a severe diagnostic bottleneck on Glioma (Recall: 41.25%).
+     * EfficientNet-B0: 87.50% Accuracy (95% CI: [85.85%, 89.15%]), Macro F1: 0.8699, Macro ROC-AUC: 0.9718. Achieves 99.00% Recall on Pituitary, 96.75% Recall on No Tumor, 88.50% Recall on Meningioma, and elevates Glioma Recall to 65.75%.
+   - Persistent Output Files: reports/final_metrics.json, reports/classification_report.csv, reports/figures/confusion_matrix.png, reports/figures/roc_curve.png.
+
+
+----------------------------------------------------------------------------------------------------
+3.2.3 PERSISTENT ARTIFACT BRIDGE
+----------------------------------------------------------------------------------------------------
+
+The offline and online pipelines communicate strictly through standardized, read-only filesystem artifacts:
+1. Model Weights: baseline_cnn.keras, efficientnet_b0.keras, models/efficientnet_b0_finetuned.keras.
+2. Calibration Parameters: reports/calibration_report.json (contains validation-fitted optimal temperature T = 1.0993 for EfficientNet-B0 and T = 1.0000 for Custom CNN).
+3. Benchmark Performance Metrics: reports/final_metrics.json (read by the Streamlit application's Model Performance Dashboard).
+
+
+----------------------------------------------------------------------------------------------------
+3.2.4 PIPELINE 2: ONLINE INTERACTIVE INFERENCE, EXPLAINABILITY & CLINICAL DECISION SUPPORT
+----------------------------------------------------------------------------------------------------
+
+Pipeline 2 provides the real-time clinical decision-support interface engineered using Streamlit (app.py). It operates dynamically on individual uploaded MRI scans without modifying model weights.
+
+1. Input Ingestion & Security Validation Layer (app.py)
+   - Input Modalities: User-directed drag-and-drop file uploader supporting standard medical image formats (.jpg, .jpeg, .png) or direct selection from preloaded test set samples.
+   - Validation & Guardrails:
+     * File type and magic byte inspection via PIL.Image.
+     * Format integrity checking: corrupt or truncated image files are trapped and reported gracefully.
+     * RGB casting: Grayscale single-channel and RGBA four-channel inputs are normalized to 3-channel RGB.
+     * Original resolution retention: Native image dimensions (e.g., 512 x 512) are preserved in memory to support accurate full-resolution saliency overlay rendering.
+
+2. Standardized Inference Preprocessing Pipeline (src/data/preprocessing.py)
+   - Dimension Standardization: The input image is bilinearly resized to 224 x 224 pixels with anti-aliasing enabled, matching the receptive field dimensions required by the neural networks.
+   - Architecture-Specific Normalization:
+     * For Custom CNN: Scaled linearly to the range [0.0, 1.0] by dividing pixel intensity values by 255.0.
+     * For EfficientNet-B0: Processed through tf.keras.applications.efficientnet.preprocess_input, scaling values to the [-1.0, 1.0] interval.
+   - Tensor Formulation: The resized array is expanded along axis 0 to produce a 4D batch tensor of shape (1, 224, 224, 3), ready for model inference.
+
+3. Checkpoint Inference Engine (app.py via tf.keras.models.load_model)
+   - Model Loading: Model checkpoints are loaded into memory and cached using Streamlit's @st.cache_resource decorator, preventing redundant disk I/O on successive user queries.
+   - User Selection: The clinician selects between "EfficientNet-B0 (Reference Baseline - V1)", "EfficientNet-B0 V2 (Fine-Tuned)", or "Baseline Custom CNN".
+   - Forward Pass: The model processes the input tensor to yield a raw logit / probability vector over the four classes:
+     z = [z_glioma, z_meningioma, z_notumor, z_pituitary], where z in R^4.
+   - Zero Runtime Retraining: Inferences are strictly feedforward calculations; no backpropagation into model weights occurs during user operation.
+
+4. Decoupled Probability Calibration & Uncertainty Gating Engine (src/evaluation/)
+   - Decoupled Temperature Scaling:
+     * EfficientNet-B0: Post-hoc temperature scaling applies the validation-fitted optimal temperature T = 1.0993:
+       p_calibrated_i = exp(log(p_raw_i) / T) / sum_j(exp(log(p_raw_j) / T)).
+       This reduces Expected Calibration Error (ECE) from 5.82% down to 4.16%, mitigating deep network overconfidence.
+     * Custom CNN Baseline: Uncalibrated raw softmax (T = 1.0000) is utilized, accompanied by a transparent user interface notice informing the user that temperature scaling was not fitted on the baseline.
+   - Predictive Shannon Entropy: Quantifies diagnostic dispersion across classes:
+     H(p) = - sum_{i=1}^4 (p_i * ln(p_i)), measured in nats.
+   - Tri-State Clinical Uncertainty Gating:
+     * High Confidence (Green Badge): Top probability >= 85% and entropy H(p) < 1.10 nats. Inferences are considered reliable for decision support.
+     * Moderate Confidence (Yellow Badge): Top probability between 60% and 85%. Clinical guidance prompts the clinician to correlate findings with patient symptoms.
+     * Uncertain / Expert Flag (Red Badge): Top probability < 60% or entropy H(p) >= 1.10 nats. The system triggers a clinical warning recommending formal radiologist re-evaluation.
+
+5. Visual Explainability Engine (Grad-CAM & Grad-CAM++) (src/explainability/)
+   - Saliency Layer Targeting:
+     * For EfficientNet-B0: Terminal convolutional layer ('top_activation' / 'top_conv'), producing a 7 x 7 x 1280 feature tensor.
+     * For Custom CNN: Penultimate convolutional layer ('conv2d_3'), producing a 28 x 28 x 128 feature tensor.
+   - Mathematical Formulation:
+     * First-Order Grad-CAM (Selvaraju et al., 2017):
+       alpha_k^c = (1 / Z) * sum_i sum_j (partial y^c / partial A_{i,j}^k)
+       Heatmap_GradCAM = ReLU( sum_k alpha_k^c * A^k )
+     * Higher-Order Grad-CAM++ (Chattopadhay et al., 2018):
+       Incorporates second- and third-order partial derivatives to weight positive gradients, providing enhanced localization for diffuse multi-focal glioma margins.
+   - Post-Processing & Rendering:
+     * Normalization: Saliency activations are normalized strictly to the [0.0, 1.0] interval.
+     * Spatial Resizing: Bilinear up-sampling resizes the coarse heatmap to match original MRI dimensions.
+     * Colormap & Blending: Colorized using the JET colormap and blended with the original grayscale MRI using user-adjustable alpha weighting (alpha = 0.40 default).
+   - Clinical Boundary Notice: The system explicitly states that Grad-CAM heatmaps highlight receptive field features driving class prediction; they do NOT delineate pathological tumor margins and must not be interpreted as surgical resection boundaries (not semantic segmentation).
+
+6. Interactive Clinical Decision Dashboard (Streamlit app.py)
+   - Real-Time Diagnostic Card: Displays Predicted Class, Calibrated Confidence Score (%), Raw Softmax comparison, and Uncertainty Badge.
+   - Class Probability Distribution: Interactive bar chart depicting relative posterior probabilities across all four diagnostic categories.
+   - Three-Panel Saliency Inspection Viewer: Side-by-side presentation of (1) Original Input MRI, (2) Normalized Saliency Heatmap, and (3) Saliency Overlay.
+   - Model Performance Dashboard: Embedded tab reading reports/final_metrics.json, presenting overall dataset accuracy, macro F1, confusion matrices, and ROC curves to provide context on overall system reliability.
+   - Mandatory Medical Disclaimer: Prominently displayed across all application views: "Research and educational use only. This software is not a certified medical device, does not provide a medical diagnosis, and must not replace evaluation by a qualified healthcare professional."
+
+
+----------------------------------------------------------------------------------------------------
+3.2.5 SUMMARY OF COMPONENT ROLES AND IMPLEMENTATION EVIDENCE
+----------------------------------------------------------------------------------------------------
+
+| Architecture Tier | Component Name | Primary Source File(s) | Input Format | Output Format | Verified Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Tier 1: Data Ingestion** | Multiclass MRI Repository | `dataset/Training`, `dataset/Testing` | 7,200 JPEG/PNG scans | Raw 2D image files | Fully Audited (0 hash dups, 26.5k slice pairs) |
+| **Tier 2: Loading & Preproc** | Stratified Split & Augmentation | `src/data/dataset.py`, `src/data/augmentation.py` | Raw image paths & labels | Augmented tf.data.Dataset batches | Verified (80/20 train/val split, 4,480 / 1,120) |
+| **Tier 2: Preprocessing** | Standardized Normalization | `src/data/preprocessing.py`, `config.py` | Single MRI (PIL / Path) | Formatted tensor (1, 224, 224, 3) | Verified (Bilinear resize, model-specific scaling) |
+| **Tier 3: Deep Models** | Custom 4-Block CNN Baseline | `src/models/custom_cnn.py`, `scripts/train_cnn.py` | Preprocessed batch tensor | Softmax vector (B, 4) | Verified (421,828 params, 68.75% test acc) |
+| **Tier 3: Deep Models** | EfficientNet-B0 Transfer Learning | `src/models/efficientnet.py`, `scripts/train_efficientnet.py` | Preprocessed batch tensor | Softmax vector (B, 4) | Verified (164,484 head params, 87.50% test acc) |
+| **Tier 4: Offline Evaluation** | Benchmark Test Evaluator | `scripts/evaluate.py`, `scripts/display_metrics.py` | `dataset/Testing` (1,600 images) | `reports/final_metrics.json`, ROC/CM plots | Verified (Isolated test set, 95% bootstrap CI) |
+| **Tier 4: Calibration** | Temperature Scaling Engine | `src/evaluation/calibration.py`, `reports/calibration_report.json` | Raw logits & validation labels | Calibrated posterior probabilities | Verified (T = 1.0993 for EffNet, ECE reduced to 4.16%) |
+| **Tier 4: Uncertainty** | Shannon Entropy Gating | `src/evaluation/uncertainty.py` | Calibrated probability vector | Tri-state confidence badge (Green/Yellow/Red) | Verified (Thresholds: 85% high, 60% moderate, H < 1.10) |
+| **Tier 4: Explainability** | Grad-CAM & Grad-CAM++ Engine | `src/explainability/gradcam.py`, `src/explainability/gradcam_plus_plus.py` | Target Conv Layer (`top_activation`) & Gradients | Normalized 2D heatmap & alpha overlay | Verified (7x7 feature maps, JET colormap blending) |
+| **Tier 5: User Interface** | Streamlit Interactive Dashboard | `app.py` | User uploaded scan & settings | Interactive diagnosis, charts, & overlays | Verified (Live at http://localhost:8501) |
+
+====================================================================================================
+End of System Architecture Specification (Chapter 3.2)
+====================================================================================================

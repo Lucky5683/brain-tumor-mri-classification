@@ -1,0 +1,232 @@
+{
+  "evaluation_timestamp": "2026-10-24 00:36:52",
+  "test_dataset_path": "X:\\Mini Project\\brain-tumor-mri-classification\\dataset\\Testing",
+  "total_test_samples": 1600,
+  "selected_fusion_model": {
+    "checkpoint": "X:\\Mini Project\\brain-tumor-mri-classification\\experiments\\multiseed_fusion\\seed_42\\best_model.keras",
+    "inference_seconds": 76.08,
+    "ms_per_image": 47.55,
+    "metrics": {
+      "accuracy": 0.8575,
+      "balanced_accuracy": 0.8574999999999999,
+      "precision_macro": 0.8637879323635733,
+      "precision_weighted": 0.8637879323635735,
+      "recall_macro": 0.8574999999999999,
+      "recall_weighted": 0.8575,
+      "f1_macro": 0.852404158680812,
+      "f1_weighted": 0.8524041586808121,
+      "roc_auc_macro": 0.9674682291666665,
+      "roc_auc_weighted": 0.9674682291666667
+    },
+    "per_class": {
+      "glioma": {
+        "display_name": "Glioma",
+        "precision": 0.9388489208633094,
+        "recall": 0.6525,
+        "f1_score": 0.7699115044247787,
+        "support": 400,
+        "roc_auc_ovr": 0.9287354166666667
+      },
+      "meningioma": {
+        "display_name": "Meningioma",
+        "precision": 0.7666666666666667,
+        "recall": 0.805,
+        "f1_score": 0.7853658536585366,
+        "support": 400,
+        "roc_auc_ovr": 0.9499291666666666
+      },
+      "notumor": {
+        "display_name": "No Tumor",
+        "precision": 0.8834080717488789,
+        "recall": 0.985,
+        "f1_score": 0.9314420803782506,
+        "support": 400,
+        "roc_auc_ovr": 0.9953874999999999
+      },
+      "pituitary": {
+        "display_name": "Pituitary",
+        "precision": 0.8662280701754386,
+        "recall": 0.9875,
+        "f1_score": 0.9228971962616822,
+        "support": 400,
+        "roc_auc_ovr": 0.9958208333333333
+      }
+    },
+    "confusion_matrix": [
+      [
+        261,
+        89,
+        30,
+        20
+      ],
+      [
+        15,
+        322,
+        22,
+        41
+      ],
+      [
+        1,
+        5,
+        394,
+        0
+      ],
+      [
+        1,
+        4,
+        0,
+        395
+      ]
+    ]
+  },
+  "baseline_model": {
+    "checkpoint": "X:\\Mini Project\\brain-tumor-mri-classification\\efficientnet_b0.keras",
+    "inference_seconds": 70.26,
+    "ms_per_image": 43.91,
+    "metrics": {
+      "accuracy": 0.875,
+      "balanced_accuracy": 0.875,
+      "precision_macro": 0.8792221227558712,
+      "precision_weighted": 0.8792221227558712,
+      "recall_macro": 0.875,
+      "recall_weighted": 0.875,
+      "f1_macro": 0.8699366374761333,
+      "f1_weighted": 0.8699366374761334,
+      "roc_auc_macro": 0.9718119791666666,
+      "roc_auc_weighted": 0.9718119791666666
+    },
+    "per_class": {
+      "glioma": {
+        "display_name": "Glioma",
+        "precision": 0.926056338028169,
+        "recall": 0.6575,
+        "f1_score": 0.7690058479532164,
+        "support": 400,
+        "roc_auc_ovr": 0.9245979166666666
+      },
+      "meningioma": {
+        "display_name": "Meningioma",
+        "precision": 0.7857142857142857,
+        "recall": 0.8525,
+        "f1_score": 0.8177458033573142,
+        "support": 400,
+        "roc_auc_ovr": 0.9670270833333333
+      },
+      "notumor": {
+        "display_name": "No Tumor",
+        "precision": 0.8968609865470852,
+        "recall": 1.0,
+        "f1_score": 0.9456264775413712,
+        "support": 400,
+        "roc_auc_ovr": 0.9977854166666666
+      },
+      "pituitary": {
+        "display_name": "Pituitary",
+        "precision": 0.908256880733945,
+        "recall": 0.99,
+        "f1_score": 0.9473684210526315,
+        "support": 400,
+        "roc_auc_ovr": 0.9978375000000002
+      }
+    },
+    "confusion_matrix": [
+      [
+        263,
+        90,
+        34,
+        13
+      ],
+      [
+        20,
+        341,
+        12,
+        27
+      ],
+      [
+        0,
+        0,
+        400,
+        0
+      ],
+      [
+        1,
+        3,
+        0,
+        396
+      ]
+    ]
+  },
+  "comparison_table": [
+    {
+      "Metric": "Test Accuracy",
+      "Multi-Scale Fusion (Seed 42)": "0.8575 (85.75%)",
+      "EfficientNet-B0 Baseline": "0.8750 (87.50%)",
+      "Delta (Fusion - Baseline)": "-1.75%"
+    },
+    {
+      "Metric": "Balanced Accuracy",
+      "Multi-Scale Fusion (Seed 42)": "0.8575",
+      "EfficientNet-B0 Baseline": "0.8750",
+      "Delta (Fusion - Baseline)": "-1.75%"
+    },
+    {
+      "Metric": "Macro-F1 Score",
+      "Multi-Scale Fusion (Seed 42)": "0.8524",
+      "EfficientNet-B0 Baseline": "0.8699",
+      "Delta (Fusion - Baseline)": "-0.0175"
+    },
+    {
+      "Metric": "Weighted-F1 Score",
+      "Multi-Scale Fusion (Seed 42)": "0.8524",
+      "EfficientNet-B0 Baseline": "0.8699",
+      "Delta (Fusion - Baseline)": "-0.0175"
+    },
+    {
+      "Metric": "Macro Precision",
+      "Multi-Scale Fusion (Seed 42)": "0.8638",
+      "EfficientNet-B0 Baseline": "0.8792",
+      "Delta (Fusion - Baseline)": "-0.0154"
+    },
+    {
+      "Metric": "Macro Recall",
+      "Multi-Scale Fusion (Seed 42)": "0.8575",
+      "EfficientNet-B0 Baseline": "0.8750",
+      "Delta (Fusion - Baseline)": "-0.0175"
+    },
+    {
+      "Metric": "Macro ROC-AUC (OvR)",
+      "Multi-Scale Fusion (Seed 42)": "0.9675",
+      "EfficientNet-B0 Baseline": "0.9718",
+      "Delta (Fusion - Baseline)": "-0.0043"
+    },
+    {
+      "Metric": "Glioma Recall",
+      "Multi-Scale Fusion (Seed 42)": "0.6525 (65.25%)",
+      "EfficientNet-B0 Baseline": "0.6575 (65.75%)",
+      "Delta (Fusion - Baseline)": "-0.50%"
+    },
+    {
+      "Metric": "Meningioma Recall",
+      "Multi-Scale Fusion (Seed 42)": "0.8050 (80.50%)",
+      "EfficientNet-B0 Baseline": "0.8525 (85.25%)",
+      "Delta (Fusion - Baseline)": "-4.75%"
+    },
+    {
+      "Metric": "No Tumor Recall",
+      "Multi-Scale Fusion (Seed 42)": "0.9850 (98.50%)",
+      "EfficientNet-B0 Baseline": "1.0000 (100.00%)",
+      "Delta (Fusion - Baseline)": "-1.50%"
+    },
+    {
+      "Metric": "Pituitary Recall",
+      "Multi-Scale Fusion (Seed 42)": "0.9875 (98.75%)",
+      "EfficientNet-B0 Baseline": "0.9900 (99.00%)",
+      "Delta (Fusion - Baseline)": "-0.25%"
+    }
+  ],
+  "methodological_caveats": [
+    "Baseline EfficientNet-B0 was historically evaluated on this official test set prior to this experiment.",
+    "Multi-scale fusion model was selected strictly on validation Macro-F1 across 3 seeds on the duplicate-aware manifest.",
+    "Perceptual hash grouping in training manifest reduces slice overlap but does not guarantee patient-level independence."
+  ]
+}

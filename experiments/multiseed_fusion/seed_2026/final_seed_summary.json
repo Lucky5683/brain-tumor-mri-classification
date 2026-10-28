@@ -1,0 +1,36 @@
+{
+  "seed": 2026,
+  "epochs_completed": 12,
+  "best_epoch": 9,
+  "training_seconds": 3586.98,
+  "best_checkpoint": "X:\\Mini Project\\brain-tumor-mri-classification\\experiments\\multiseed_fusion\\seed_2026\\best_model.keras",
+  "validation_accuracy": 0.8794449262792715,
+  "validation_macro_f1": 0.8779136854685996,
+  "validation_balanced_accuracy": 0.876621526164877,
+  "per_class": {
+    "glioma": {
+      "precision": 0.9754098360655737,
+      "recall": 0.8380281690140845,
+      "f1": 0.9015151515151515,
+      "support": 284
+    },
+    "meningioma": {
+      "precision": 0.8102766798418972,
+      "recall": 0.7347670250896058,
+      "f1": 0.7706766917293233,
+      "support": 279
+    },
+    "notumor": {
+      "precision": 0.960431654676259,
+      "recall": 0.9434628975265018,
+      "f1": 0.9518716577540107,
+      "support": 283
+    },
+    "pituitary": {
+      "precision": 0.8042328042328042,
+      "recall": 0.990228013029316,
+      "f1": 0.8875912408759125,
+      "support": 307
+    }
+  }
+}

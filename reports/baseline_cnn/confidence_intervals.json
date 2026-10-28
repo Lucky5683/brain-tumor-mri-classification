@@ -1,0 +1,35 @@
+{
+  "n_bootstraps": 1000,
+  "confidence_level": 0.95,
+  "accuracy": {
+    "mean": 0.7806,
+    "std": 0.0103,
+    "ci_lower": 0.7612,
+    "ci_upper": 0.8
+  },
+  "macro_f1": {
+    "mean": 0.7673,
+    "std": 0.0105,
+    "ci_lower": 0.7474,
+    "ci_upper": 0.7874
+  },
+  "macro_recall": {
+    "mean": 0.7807,
+    "std": 0.0088,
+    "ci_lower": 0.7634,
+    "ci_upper": 0.7973
+  },
+  "macro_precision": {
+    "mean": 0.8032,
+    "std": 0.0096,
+    "ci_lower": 0.7843,
+    "ci_upper": 0.8211
+  },
+  "glioma_recall": {
+    "mean": 0.5778,
+    "std": 0.0248,
+    "ci_lower": 0.5274,
+    "ci_upper": 0.6241
+  },
+  "note": "Bootstrap confidence intervals reflect test sampling distribution uncertainty and do not replace external clinical validation."
+}

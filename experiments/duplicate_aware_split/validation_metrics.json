@@ -1,0 +1,64 @@
+{
+  "checkpoint": "X:\\Mini Project\\brain-tumor-mri-classification\\models\\multiscale_fusion_grouped_best.keras",
+  "manifest": "X:\\Mini Project\\brain-tumor-mri-classification\\experiments\\duplicate_aware_split\\training_manifest.csv",
+  "validation_samples": 1153,
+  "accuracy": 0.8638334778837814,
+  "macro_f1": 0.8582114316783322,
+  "macro_precision": 0.8687332099668553,
+  "macro_recall": 0.8603567340610629,
+  "weighted_f1": 0.8591752289941093,
+  "weighted_precision": 0.8673095335131648,
+  "weighted_recall": 0.8638334778837814,
+  "per_class": {
+    "glioma": {
+      "precision": 0.9107806691449815,
+      "recall": 0.8626760563380281,
+      "f1_score": 0.8860759493670886,
+      "support": 284
+    },
+    "meningioma": {
+      "precision": 0.839622641509434,
+      "recall": 0.6379928315412187,
+      "f1_score": 0.725050916496945,
+      "support": 279
+    },
+    "notumor": {
+      "precision": 0.9307958477508651,
+      "recall": 0.950530035335689,
+      "f1_score": 0.9405594405594405,
+      "support": 283
+    },
+    "pituitary": {
+      "precision": 0.793733681462141,
+      "recall": 0.990228013029316,
+      "f1_score": 0.881159420289855,
+      "support": 307
+    }
+  },
+  "confusion_matrix": [
+    [
+      245,
+      29,
+      5,
+      5
+    ],
+    [
+      24,
+      178,
+      13,
+      64
+    ],
+    [
+      0,
+      4,
+      269,
+      10
+    ],
+    [
+      0,
+      1,
+      2,
+      304
+    ]
+  ]
+}

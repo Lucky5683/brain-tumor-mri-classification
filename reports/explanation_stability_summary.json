@@ -1,0 +1,16 @@
+{
+  "High (>=0.80)": {
+    "mean_pearson_r": 0.8454,
+    "std_pearson_r": 0.1967,
+    "mean_mask_iou": 0.6239,
+    "std_mask_iou": 0.2329,
+    "count": 24
+  },
+  "Borderline (<0.80)": {
+    "mean_pearson_r": 0.7997,
+    "std_pearson_r": 0.2474,
+    "mean_mask_iou": 0.544,
+    "std_mask_iou": 0.2737,
+    "count": 24
+  }
+}

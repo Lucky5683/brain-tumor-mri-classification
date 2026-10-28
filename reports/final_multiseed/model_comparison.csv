@@ -1,0 +1,12 @@
+Metric,Multi-Scale Fusion (Seed 42),EfficientNet-B0 Baseline,Delta (Fusion - Baseline)
+Test Accuracy,0.8575 (85.75%),0.8750 (87.50%),-1.75%
+Balanced Accuracy,0.8575,0.8750,-1.75%
+Macro-F1 Score,0.8524,0.8699,-0.0175
+Weighted-F1 Score,0.8524,0.8699,-0.0175
+Macro Precision,0.8638,0.8792,-0.0154
+Macro Recall,0.8575,0.8750,-0.0175
+Macro ROC-AUC (OvR),0.9675,0.9718,-0.0043
+Glioma Recall,0.6525 (65.25%),0.6575 (65.75%),-0.50%
+Meningioma Recall,0.8050 (80.50%),0.8525 (85.25%),-4.75%
+No Tumor Recall,0.9850 (98.50%),1.0000 (100.00%),-1.50%
+Pituitary Recall,0.9875 (98.75%),0.9900 (99.00%),-0.25%

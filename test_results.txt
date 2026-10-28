@@ -1,0 +1,21 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-8.3.5, pluggy-1.6.0 -- C:\Users\dines\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: X:\Mini Project\brain-tumor-mri-classification
+plugins: anyio-4.9.0
+collecting ... collected 12 items
+
+tests/test_pipeline.py::test_1_valid_mri_image_preprocessing PASSED      [  8%]
+tests/test_pipeline.py::test_2_unsupported_file_type PASSED              [ 16%]
+tests/test_pipeline.py::test_3_corrupted_image PASSED                    [ 25%]
+tests/test_pipeline.py::test_4_incorrect_image_dimensions PASSED         [ 33%]
+tests/test_pipeline.py::test_5_missing_model_checkpoint PASSED           [ 41%]
+tests/test_pipeline.py::test_6_correct_output_dimensions_and_class_count PASSED [ 50%]
+tests/test_pipeline.py::test_7_correct_class_label_mapping PASSED        [ 58%]
+tests/test_pipeline.py::test_8_prediction_probability_validity PASSED    [ 66%]
+tests/test_pipeline.py::test_9_gradcam_output_generation PASSED          [ 75%]
+tests/test_pipeline.py::test_10_gradcam_plus_plus_output_generation PASSED [ 83%]
+tests/test_pipeline.py::test_11_calibration_model_awareness PASSED       [ 91%]
+tests/test_pipeline.py::test_12_empty_or_invalid_input PASSED            [100%]
+
+============================= 12 passed in 31.30s =============================

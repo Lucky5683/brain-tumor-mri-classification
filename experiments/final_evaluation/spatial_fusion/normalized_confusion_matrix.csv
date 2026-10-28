@@ -1,0 +1,5 @@
+,glioma,meningioma,notumor,pituitary
+glioma,0.6925,0.18,0.095,0.0325
+meningioma,0.0275,0.845,0.0475,0.08
+notumor,0.0025,0.0025,0.995,0.0
+pituitary,0.0025,0.0025,0.0,0.995

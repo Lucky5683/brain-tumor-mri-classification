@@ -1,0 +1,271 @@
+{
+  "model_evaluated": "X:\\Mini Project\\brain-tumor-mri-classification\\efficientnet_b0.keras",
+  "target_convolutional_layer": "top_activation (EfficientNet-B0 backbone)",
+  "random_seed": 42,
+  "total_representative_samples": 8,
+  "classes_represented": [
+    "glioma",
+    "meningioma",
+    "notumor",
+    "pituitary"
+  ],
+  "clinical_scope_declaration": "Grad-CAM and Grad-CAM++ visualizations highlight gradient-weighted image regions that contributed most strongly to the model's classification score. They do NOT delineate precise anatomical tumor boundaries, volume, or surgical resection margins.",
+  "results": [
+    {
+      "image_filename": "Te-gl_130.jpg",
+      "true_class": "glioma",
+      "predicted_class": "glioma",
+      "prediction_probability": 0.7088,
+      "prediction_correct": true,
+      "gradcam": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.2732,
+          "std": 0.2757,
+          "median": 0.2254,
+          "activation_area_pct_gt_0_5": 22.45,
+          "activation_area_pct_gt_0_8": 4.08
+        },
+        "overlay_path": "reports\\explainability\\figures\\glioma_Te-gl_130_gradcam_overlay.png"
+      },
+      "gradcam_plus_plus": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.0204,
+          "std": 0.1414,
+          "median": 0.0,
+          "activation_area_pct_gt_0_5": 2.04,
+          "activation_area_pct_gt_0_8": 2.04
+        },
+        "overlay_path": "reports\\explainability\\figures\\glioma_Te-gl_130_gradcampp_overlay.png"
+      },
+      "comparison_path": "reports\\explainability\\glioma_Te-gl_130_comparison.png"
+    },
+    {
+      "image_filename": "Te-gl_378.jpg",
+      "true_class": "glioma",
+      "predicted_class": "glioma",
+      "prediction_probability": 1.0,
+      "prediction_correct": true,
+      "gradcam": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.3201,
+          "std": 0.2204,
+          "median": 0.2678,
+          "activation_area_pct_gt_0_5": 16.33,
+          "activation_area_pct_gt_0_8": 6.12
+        },
+        "overlay_path": "reports\\explainability\\figures\\glioma_Te-gl_378_gradcam_overlay.png"
+      },
+      "gradcam_plus_plus": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.3025,
+          "std": 0.2863,
+          "median": 0.2484,
+          "activation_area_pct_gt_0_5": 28.57,
+          "activation_area_pct_gt_0_8": 6.12
+        },
+        "overlay_path": "reports\\explainability\\figures\\glioma_Te-gl_378_gradcampp_overlay.png"
+      },
+      "comparison_path": "reports\\explainability\\glioma_Te-gl_378_comparison.png"
+    },
+    {
+      "image_filename": "Te-me_162.jpg",
+      "true_class": "meningioma",
+      "predicted_class": "meningioma",
+      "prediction_probability": 0.998,
+      "prediction_correct": true,
+      "gradcam": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.4718,
+          "std": 0.2934,
+          "median": 0.4844,
+          "activation_area_pct_gt_0_5": 46.94,
+          "activation_area_pct_gt_0_8": 14.29
+        },
+        "overlay_path": "reports\\explainability\\figures\\meningioma_Te-me_162_gradcam_overlay.png"
+      },
+      "gradcam_plus_plus": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.2366,
+          "std": 0.2078,
+          "median": 0.2002,
+          "activation_area_pct_gt_0_5": 10.2,
+          "activation_area_pct_gt_0_8": 4.08
+        },
+        "overlay_path": "reports\\explainability\\figures\\meningioma_Te-me_162_gradcampp_overlay.png"
+      },
+      "comparison_path": "reports\\explainability\\meningioma_Te-me_162_comparison.png"
+    },
+    {
+      "image_filename": "Te-me_164.jpg",
+      "true_class": "meningioma",
+      "predicted_class": "meningioma",
+      "prediction_probability": 0.9889,
+      "prediction_correct": true,
+      "gradcam": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.1726,
+          "std": 0.2564,
+          "median": 0.087,
+          "activation_area_pct_gt_0_5": 10.2,
+          "activation_area_pct_gt_0_8": 8.16
+        },
+        "overlay_path": "reports\\explainability\\figures\\meningioma_Te-me_164_gradcam_overlay.png"
+      },
+      "gradcam_plus_plus": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.1299,
+          "std": 0.2233,
+          "median": 0.0,
+          "activation_area_pct_gt_0_5": 10.2,
+          "activation_area_pct_gt_0_8": 2.04
+        },
+        "overlay_path": "reports\\explainability\\figures\\meningioma_Te-me_164_gradcampp_overlay.png"
+      },
+      "comparison_path": "reports\\explainability\\meningioma_Te-me_164_comparison.png"
+    },
+    {
+      "image_filename": "Te-no_13.jpg",
+      "true_class": "notumor",
+      "predicted_class": "notumor",
+      "prediction_probability": 0.9926,
+      "prediction_correct": true,
+      "gradcam": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.2063,
+          "std": 0.2564,
+          "median": 0.1091,
+          "activation_area_pct_gt_0_5": 14.29,
+          "activation_area_pct_gt_0_8": 4.08
+        },
+        "overlay_path": "reports\\explainability\\figures\\notumor_Te-no_13_gradcam_overlay.png"
+      },
+      "gradcam_plus_plus": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.251,
+          "std": 0.3219,
+          "median": 0.0642,
+          "activation_area_pct_gt_0_5": 22.45,
+          "activation_area_pct_gt_0_8": 14.29
+        },
+        "overlay_path": "reports\\explainability\\figures\\notumor_Te-no_13_gradcampp_overlay.png"
+      },
+      "comparison_path": "reports\\explainability\\notumor_Te-no_13_comparison.png"
+    },
+    {
+      "image_filename": "Te-no_35.jpg",
+      "true_class": "notumor",
+      "predicted_class": "notumor",
+      "prediction_probability": 0.9999,
+      "prediction_correct": true,
+      "gradcam": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.3674,
+          "std": 0.2974,
+          "median": 0.2361,
+          "activation_area_pct_gt_0_5": 34.69,
+          "activation_area_pct_gt_0_8": 14.29
+        },
+        "overlay_path": "reports\\explainability\\figures\\notumor_Te-no_35_gradcam_overlay.png"
+      },
+      "gradcam_plus_plus": {
+        "heatmap_stats": {
+          "min": 0.0012,
+          "max": 1.0,
+          "mean": 0.3651,
+          "std": 0.2732,
+          "median": 0.2811,
+          "activation_area_pct_gt_0_5": 30.61,
+          "activation_area_pct_gt_0_8": 12.24
+        },
+        "overlay_path": "reports\\explainability\\figures\\notumor_Te-no_35_gradcampp_overlay.png"
+      },
+      "comparison_path": "reports\\explainability\\notumor_Te-no_35_comparison.png"
+    },
+    {
+      "image_filename": "Te-pi_132.jpg",
+      "true_class": "pituitary",
+      "predicted_class": "pituitary",
+      "prediction_probability": 0.9995,
+      "prediction_correct": true,
+      "gradcam": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.2528,
+          "std": 0.2782,
+          "median": 0.1663,
+          "activation_area_pct_gt_0_5": 18.37,
+          "activation_area_pct_gt_0_8": 8.16
+        },
+        "overlay_path": "reports\\explainability\\figures\\pituitary_Te-pi_132_gradcam_overlay.png"
+      },
+      "gradcam_plus_plus": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.0246,
+          "std": 0.1438,
+          "median": 0.0,
+          "activation_area_pct_gt_0_5": 2.04,
+          "activation_area_pct_gt_0_8": 2.04
+        },
+        "overlay_path": "reports\\explainability\\figures\\pituitary_Te-pi_132_gradcampp_overlay.png"
+      },
+      "comparison_path": "reports\\explainability\\pituitary_Te-pi_132_comparison.png"
+    },
+    {
+      "image_filename": "Te-pi_289.jpg",
+      "true_class": "pituitary",
+      "predicted_class": "pituitary",
+      "prediction_probability": 0.9366,
+      "prediction_correct": true,
+      "gradcam": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.2979,
+          "std": 0.3502,
+          "median": 0.1338,
+          "activation_area_pct_gt_0_5": 30.61,
+          "activation_area_pct_gt_0_8": 14.29
+        },
+        "overlay_path": "reports\\explainability\\figures\\pituitary_Te-pi_289_gradcam_overlay.png"
+      },
+      "gradcam_plus_plus": {
+        "heatmap_stats": {
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.3489,
+          "std": 0.3298,
+          "median": 0.286,
+          "activation_area_pct_gt_0_5": 34.69,
+          "activation_area_pct_gt_0_8": 10.2
+        },
+        "overlay_path": "reports\\explainability\\figures\\pituitary_Te-pi_289_gradcampp_overlay.png"
+      },
+      "comparison_path": "reports\\explainability\\pituitary_Te-pi_289_comparison.png"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "experiment": "EfficientNet-B0 Multi-Scale Fusion",
+  "split_type": "duplicate_aware_sha256",
+  "manifest_path": "X:\\Mini Project\\brain-tumor-mri-classification\\experiments\\duplicate_audit\\duplicate_aware_split_manifest.csv",
+  "class_names": [
+    "glioma",
+    "meningioma",
+    "notumor",
+    "pituitary"
+  ],
+  "training_images": 4461,
+  "validation_images": 1139,
+  "training_seed": 42,
+  "batch_size": 32,
+  "stage1_epochs_configured": 5,
+  "stage2_epochs_configured": 4,
+  "stage1_seconds": 2587.2,
+  "stage2_seconds": 2911.3,
+  "selected_stage": 2,
+  "selected_checkpoint": "X:\\Mini Project\\brain-tumor-mri-classification\\models\\multiscale_fusion_dedup_best.keras",
+  "best_validation_metrics": {
+    "epoch": 4,
+    "val_accuracy": 0.8630377524143986,
+    "val_macro_f1": 0.8576799400801219,
+    "val_macro_precision": 0.8706297288776798,
+    "val_macro_recall": 0.8607051429227414
+  },
+  "test_set_evaluated": false
+}
