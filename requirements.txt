@@ -29,3 +29,16 @@ python-pptx>=1.0.0
 # Automated Testing & Browser Validation
 pytest>=8.0.0
 selenium>=4.20.0
+
+streamlit
+plotly
+pandas
+numpy
+Pillow
+opencv-python-headless
+torch
+torchvision
+timm
+scikit-learn
+matplotlib
+seaborn
